@@ -106,6 +106,12 @@ function imagine_gallery_views_default_views() {
   $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
   $handler->display->display_options['pane_category']['weight'] = '0';
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: User Gallery Full */
+  $handler = $view->new_display('panel_pane', 'User Gallery Full', 'panel_pane_2');
+  $handler->display->display_options['display_description'] = 'A full user gallery per user.';
+  $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
+  $handler->display->display_options['pane_category']['weight'] = '0';
   $translatables['imagine_images'] = array(
     t('Master'),
     t('more'),
@@ -121,6 +127,8 @@ function imagine_gallery_views_default_views() {
     t('Imagine Gallery: Main'),
     t('The main content output for gallery images.'),
     t('Imagine Gallery'),
+    t('User Gallery Full'),
+    t('A full user gallery per user.'),
   );
   $export['imagine_images'] = $view;
 
