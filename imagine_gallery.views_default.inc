@@ -99,9 +99,8 @@ function imagine_gallery_views_default_views() {
     'image' => 'image',
   );
 
-  /* Display: Site Gallery */
-  $handler = $view->new_display('panel_pane', 'Site Gallery', 'panel_pane_1');
-  $handler->display->display_options['display_description'] = 'A gallery of all images submitted by all users.';
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['pane_title'] = 'Imagine Gallery: Main';
   $handler->display->display_options['pane_description'] = 'The main content output for gallery images.';
   $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
@@ -111,27 +110,8 @@ function imagine_gallery_views_default_views() {
   /* Display: User Gallery Full */
   $handler = $view->new_display('panel_pane', 'User Gallery Full', 'panel_pane_2');
   $handler->display->display_options['display_description'] = 'A full user gallery per user.';
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: User: Uid */
-  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['table'] = 'users';
-  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['pane_title'] = 'User Gallery Full';
-  $handler->display->display_options['pane_description'] = 'The full gallery of a given user\'s images.';
   $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
   $handler->display->display_options['pane_category']['weight'] = '0';
-  $handler->display->display_options['argument_input'] = array(
-    'uid' => array(
-      'type' => 'context',
-      'context' => 'user.uid',
-      'context_optional' => 0,
-      'panel' => '0',
-      'fixed' => '',
-      'label' => 'User: Uid',
-    ),
-  );
   $translatables['imagine_images'] = array(
     t('Master'),
     t('more'),
@@ -143,15 +123,12 @@ function imagine_gallery_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
-    t('Site Gallery'),
-    t('A gallery of all images submitted by all users.'),
+    t('Content pane'),
     t('Imagine Gallery: Main'),
     t('The main content output for gallery images.'),
     t('Imagine Gallery'),
     t('User Gallery Full'),
     t('A full user gallery per user.'),
-    t('All'),
-    t('The full gallery of a given user\'s images.'),
   );
   $export['imagine_images'] = $view;
 
