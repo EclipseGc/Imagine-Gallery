@@ -101,7 +101,6 @@ function imagine_gallery_views_default_views() {
 
   /* Display: Site Gallery */
   $handler = $view->new_display('panel_pane', 'Site Gallery', 'panel_pane_1');
-  $handler->display->display_options['display_description'] = 'A gallery of all images submitted by all users.';
   $handler->display->display_options['pane_title'] = 'Imagine Gallery: Main';
   $handler->display->display_options['pane_description'] = 'The main content output for gallery images.';
   $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
@@ -118,8 +117,35 @@ function imagine_gallery_views_default_views() {
   $handler->display->display_options['arguments']['uid']['field'] = 'uid';
   $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['pane_title'] = 'User Gallery Full';
-  $handler->display->display_options['pane_description'] = 'The full gallery of a given user\'s images.';
+  $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $handler->display->display_options['argument_input'] = array(
+    'uid' => array(
+      'type' => 'context',
+      'context' => 'user.uid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'User: Uid',
+    ),
+  );
+
+  /* Display: User Gallery Sample */
+  $handler = $view->new_display('panel_pane', 'User Gallery Sample', 'panel_pane_3');
+  $handler->display->display_options['display_description'] = 'A sample gallery per user.';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '8';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['pane_category']['name'] = 'Imagine Gallery';
   $handler->display->display_options['pane_category']['weight'] = '0';
   $handler->display->display_options['argument_input'] = array(
@@ -144,14 +170,14 @@ function imagine_gallery_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('Site Gallery'),
-    t('A gallery of all images submitted by all users.'),
     t('Imagine Gallery: Main'),
     t('The main content output for gallery images.'),
     t('Imagine Gallery'),
     t('User Gallery Full'),
     t('A full user gallery per user.'),
     t('All'),
-    t('The full gallery of a given user\'s images.'),
+    t('User Gallery Sample'),
+    t('A sample gallery per user.'),
   );
   $export['imagine_images'] = $view;
 
