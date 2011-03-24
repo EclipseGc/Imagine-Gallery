@@ -162,6 +162,121 @@ function imagine_gallery_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['imagine_gallery_administration'] = $page;
 
+  $page = new stdClass;
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'imagine_user_image_add';
+  $page->task = 'page';
+  $page->admin_title = 'Imagine User Image Add';
+  $page->admin_description = 'Creates a menu item allowing user to create new images from their user pages.';
+  $page->path = 'user/%user/add_image';
+  $page->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'role',
+        'settings' => array(
+          'rids' => array(
+            0 => 2,
+          ),
+        ),
+        'context' => 'argument_entity_id:user_1',
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'and',
+  );
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Add Images',
+    'name' => 'navigation',
+    'weight' => '0',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array(
+    'user' => array(
+      'id' => 1,
+      'identifier' => 'User: ID',
+      'name' => 'entity_id:user',
+      'settings' => array(),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => TRUE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass;
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_imagine_user_image_add_menu_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'imagine_user_image_add';
+  $handler->handler = 'menu_context';
+  $handler->weight = -30;
+  $handler->conf = array(
+    'title' => 'Guild Members',
+    'no_blocks' => FALSE,
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 4,
+            ),
+          ),
+          'context' => 'argument_entity_id:user_1',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'administer nodes',
+          ),
+          'context' => 'argument_entity_id:user_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'or',
+    ),
+    'context_admin_options' => 'node_create_pubopt',
+    'submitted_context' => NULL,
+    'node_types' => 'image',
+    'publishing_options' => 'published',
+  );
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass;
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_imagine_user_image_add_menu_context';
+  $handler->task = 'page';
+  $handler->subtask = 'imagine_user_image_add';
+  $handler->handler = 'menu_context';
+  $handler->weight = -29;
+  $handler->conf = array(
+    'title' => 'Context Admin',
+    'no_blocks' => FALSE,
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'context_admin_options' => 'node_create_pubopt',
+    'submitted_context' => 'empty',
+    'context_admin_options_items' => 'image',
+    'node_types' => 'image',
+    'publishing_options' => 'unpublished',
+  );
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['imagine_user_image_add'] = $page;
+
  return $pages;
 
 }
