@@ -16,7 +16,10 @@ function imagine_gallery_default_page_manager_pages() {
   $page->admin_title = 'Imagine Gallery';
   $page->admin_description = 'A gallery page for displaying all your approved, user submitted images.';
   $page->path = 'gallery/view';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'default tab',
     'title' => 'View',
@@ -117,6 +120,8 @@ function imagine_gallery_default_page_manager_pages() {
       ),
     ),
     'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'tab',
