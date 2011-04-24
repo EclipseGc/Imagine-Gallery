@@ -170,10 +170,7 @@ function imagine_gallery_default_page_manager_pages() {
   $page->admin_title = 'Imagine User Gallery';
   $page->admin_description = 'The dynamic page which contains all images for a particular user.';
   $page->path = 'user/%user/gallery/view';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
+  $page->access = array();
   $page->menu = array(
     'type' => 'default tab',
     'title' => 'View',
@@ -273,6 +270,17 @@ function imagine_gallery_default_page_manager_pages() {
           ),
         ),
         'context' => 'argument_entity_id:user_1',
+        'not' => FALSE,
+      ),
+      1 => array(
+        'name' => 'compare_users',
+        'settings' => array(
+          'equality' => '1',
+        ),
+        'context' => array(
+          0 => 'logged-in-user',
+          1 => 'argument_entity_id:user_1',
+        ),
         'not' => FALSE,
       ),
     ),
@@ -390,6 +398,17 @@ function imagine_gallery_default_page_manager_pages() {
           ),
         ),
         'context' => 'argument_entity_id:user_1',
+        'not' => FALSE,
+      ),
+      1 => array(
+        'name' => 'compare_users',
+        'settings' => array(
+          'equality' => '1',
+        ),
+        'context' => array(
+          0 => 'logged-in-user',
+          1 => 'argument_entity_id:user_1',
+        ),
         'not' => FALSE,
       ),
     ),
