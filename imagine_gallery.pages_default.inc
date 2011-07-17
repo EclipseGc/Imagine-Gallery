@@ -156,8 +156,14 @@ function imagine_gallery_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
     'context_admin_options' => 'views_bulk_menu',
-    'context_admin_vbo_views_bulk_node_type' => 'image',
+    'context_admin_vbo_views_bulk_node_type' => array(
+      'image' => 'image',
+      'blog' => 0,
+      'forum' => 0,
+      'page' => 0,
+    ),
     'context_admin_vbo_views_bulk_published' => 'both',
+    'context_admin_vbo_machine_name' => 'imagine_gallery_admin',
   );
   $page->default_handlers[$handler->name] = $handler;
   $pages['imagine_gallery_administration'] = $page;
@@ -170,7 +176,10 @@ function imagine_gallery_default_page_manager_pages() {
   $page->admin_title = 'Imagine User Gallery';
   $page->admin_description = 'The dynamic page which contains all images for a particular user.';
   $page->path = 'user/%user/gallery/view';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'default tab',
     'title' => 'View',
